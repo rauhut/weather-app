@@ -1,0 +1,27 @@
+img {
+  height: 100px;
+}
+
+.card {
+  background-color: #4f8ba1;
+  padding: 10px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.weather-details {
+  display: inline-block;
+  padding: 15px;
+}
+
+.current-temp > h2 {
+  padding: 15px;
+}

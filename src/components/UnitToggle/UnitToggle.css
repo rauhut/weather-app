@@ -1,0 +1,91 @@
+.unit-toggle {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.unit-toggle > h3 {
+  color: black;
+  text-shadow: none;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 85px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  text-align: left;
+}
+.toggle-switch-checkbox {
+  display: none;
+}
+.toggle-switch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid #ccc;
+  border-radius: 20px;
+  margin: 15px;
+}
+.toggle-switch-inner {
+  display: block;
+  width: 200%;
+  /* margin-left: -100%; */
+  /* transition: margin 0.3s ease-in 0s; */
+}
+.toggle-switch-inner::before,
+.toggle-switch-inner::after {
+  display: block;
+  float: left;
+  width: 50%;
+  /* height: 34px; */
+  padding: 0;
+  /* line-height: 34px; */
+  font-size: 14px;
+  /* color: white; */
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.toggle-switch-inner:before {
+  content: "C";
+  padding-left: 10px;
+  background-color: #ccc;
+  color: #ccc;
+}
+/* .toggle-switch-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.toggle-switch-disabled::before {
+  background-color: #ccc;
+  cursor: not-allowed;
+} */
+.toggle-switch-inner::after {
+  content: "F";
+  padding-right: 10px;
+  background-color: #ccc;
+  color: #ccc;
+  text-align: right;
+}
+.toggle-switch-switch {
+  display: block;
+  width: 35px;
+  margin: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 40px;
+  border: 0 solid #ccc;
+  border-radius: 40px;
+  transition: all 0.3s ease-in 0s;
+}
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+  margin-left: 0;
+}
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+  right: 0px;
+}

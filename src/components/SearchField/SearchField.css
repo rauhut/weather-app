@@ -1,0 +1,20 @@
+input {
+  padding: 10px;
+  border: 0.16em solid #4f8ba1;
+  border-right: 0;
+}
+
+button {
+  padding: 10px;
+  text-transform: uppercase;
+  border: 0.16em solid #4f8ba1;
+  background-color: #31b7e8;
+}
+
+button:hover {
+  background-color: #4f8ba1;
+}
+
+.search-field {
+  text-align: center;
+}
