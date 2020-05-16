@@ -21,7 +21,6 @@ class App extends Component {
     this.setState((currentState) => ({
       isCelsius: !currentState.isCelsius,
     }));
-    console.log(this.state.isCelsius);
   };
 
   onInputChange = (event) => {
@@ -39,7 +38,6 @@ class App extends Component {
       `http://api.openweathermap.org/data/2.5/weather?q=${this.state.locationEntry}&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
     ).then((res) => {
       if (res.ok) {
-        console.log("this shouldnt happen");
         this.setState({ isValidlocation: true });
         return res
           .json()
@@ -54,13 +52,19 @@ class App extends Component {
             this.setState({ forcast: data.daily });
           });
       } else {
-        console.log("does this happen");
         this.setState({ isValidlocation: false });
       }
     });
   };
 
   render() {
+    const {
+      locationEntry,
+      weatherData,
+      isCelsius,
+      forcast,
+      isValidlocation,
+    } = this.state;
     return (
       <div className="background">
         {Object.keys(this.state.weatherData).length === 0 &&
@@ -71,6 +75,7 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onLocationSubmit={this.onLocationSubmit}
               onEnter={this.onEnter}
+              locationEntry={locationEntry}
             />
           </div>
         ) : (
@@ -81,20 +86,18 @@ class App extends Component {
                   onInputChange={this.onInputChange}
                   onLocationSubmit={this.onLocationSubmit}
                   onEnter={this.onEnter}
+                  locationEntry={locationEntry}
                 />
               </div>
               <UnitToggle onToggleClick={this.onToggleClick} />
             </div>
-            {this.state.isValidlocation ? (
+            {isValidlocation ? (
               <div className="weather-container">
                 <CurrentWeather
-                  weatherData={this.state.weatherData}
-                  isCelsius={this.state.isCelsius}
+                  weatherData={weatherData}
+                  isCelsius={isCelsius}
                 />
-                <Forcast
-                  forcastData={this.state.forcast}
-                  isCelsius={this.state.isCelsius}
-                />
+                <Forcast forcastData={forcast} isCelsius={isCelsius} />
               </div>
             ) : (
               <div className="empty-state">

@@ -1,18 +1,27 @@
 input {
   padding: 10px;
-  border: 0.16em solid #4f8ba1;
+  border: 0.1em solid #4f8ba1;
   border-right: 0;
+}
+
+input,
+button {
+  outline: none;
 }
 
 button {
   padding: 10px;
   text-transform: uppercase;
-  border: 0.16em solid #4f8ba1;
+  border: 0.1em solid #4f8ba1;
   background-color: #31b7e8;
 }
 
 button:hover {
   background-color: #4f8ba1;
+}
+
+button:disabled {
+  background-color: #96cde0;
 }
 
 .search-field {

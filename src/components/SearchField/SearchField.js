@@ -1,7 +1,12 @@
 import React from "react";
 import "./SearchField.css";
 
-const SearchField = ({ onInputChange, onLocationSubmit, onEnter }) => {
+const SearchField = ({
+  onInputChange,
+  onLocationSubmit,
+  onEnter,
+  locationEntry,
+}) => {
   return (
     <div className="search-field" onKeyPress={onEnter}>
       <input
@@ -9,7 +14,9 @@ const SearchField = ({ onInputChange, onLocationSubmit, onEnter }) => {
         placeholder="Search for location"
         onChange={onInputChange}
       />
-      <button onClick={onLocationSubmit}>Search</button>
+      <button onClick={onLocationSubmit} disabled={locationEntry === ""}>
+        Search
+      </button>
     </div>
   );
 };
