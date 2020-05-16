@@ -8,7 +8,7 @@
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr 10fr 1fr;
-  grid-template-rows: 50px auto 10%;
+  grid-template-rows: 70px auto 10%;
   justify-items: stretch;
 }
 
@@ -29,6 +29,9 @@
 .weather-container {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+}
+
+.empty-state {
   align-self: center;
 }
 
@@ -41,4 +44,6 @@
   background-color: #31b7e8;
   margin: 20px 50px;
   border-radius: 25px;
+  min-width: 300px;
+  align-self: start;
 }

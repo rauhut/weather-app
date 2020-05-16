@@ -26,13 +26,15 @@ const Forcast = ({ forcastData, isCelsius }) => {
               <div className="forcast-temp">
                 <h2>{tempConverter(isCelsius, day.temp.day)}°</h2>
               </div>
-              <h6>
-                Feels Like: {tempConverter(isCelsius, day.feels_like.day)}°
-              </h6>
-              <h6>Humidity: {day.humidity}%</h6>
-              <h6>Min: {tempConverter(isCelsius, day.temp.min)}°</h6>
-              <h6>Max: {tempConverter(isCelsius, day.temp.max)}°</h6>
-              <h6>Pressure: {day.pressure}hPa</h6>
+              <div>
+                <h6>
+                  Feels Like: {tempConverter(isCelsius, day.feels_like.day)}°
+                </h6>
+                <h6>Humidity: {day.humidity}%</h6>
+                <h6>Min: {tempConverter(isCelsius, day.temp.min)}°</h6>
+                <h6>Max: {tempConverter(isCelsius, day.temp.max)}°</h6>
+                <h6>Pressure: {day.pressure}hPa</h6>
+              </div>
             </div>
           );
         })}
