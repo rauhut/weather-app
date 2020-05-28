@@ -1,30 +1,36 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import CurrentWeather from "./components/CurrentWeather/CurrentWeather";
 import SearchField from "./components/SearchField/SearchField";
 import UnitToggle from "./components/UnitToggle/UnitToggle";
 import Forcast from "./components/Forcast/Forcast";
 import "./App.css";
+import { setSearchField, setIsCelsius, submitLocation } from "./actions";
+
+const mapStateToProps = (state) => {
+  return {
+    locationEntry: state.searchInput.locationEntry,
+    isCelsius: state.toggleTempUnit.isCelsius,
+    weatherData: state.getWeatherData.weatherData,
+    forcast: state.getWeatherData.forcast,
+    isValidlocation: state.getWeatherData.isValidLocation,
+    isPending: state.getWeatherData.isPending,
+    error: state.getWeatherData.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInputChange: (event) => dispatch(setSearchField(event.target.value)),
+    onToggleClick: () => dispatch(setIsCelsius()),
+    onRequestWeather: (locationEntry) =>
+      dispatch(submitLocation(locationEntry)),
+  };
+};
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      locationEntry: "",
-      weatherData: {},
-      forcast: [],
-      isCelsius: true,
-      isValidlocation: true,
-    };
-  }
-
-  onToggleClick = () => {
-    this.setState((currentState) => ({
-      isCelsius: !currentState.isCelsius,
-    }));
-  };
-
-  onInputChange = (event) => {
-    this.setState({ locationEntry: event.target.value });
+  onLocationSubmit = () => {
+    this.props.onRequestWeather(this.props.locationEntry);
   };
 
   onEnter = (e) => {
@@ -33,56 +39,24 @@ class App extends Component {
     }
   };
 
-  onLocationSubmit = () => {
-    fetch(
-      `http://localhost:3000/weather?locationEntry=${this.state.locationEntry}`,
-      {
-        method: "get",
-        header: { "Content-Type": "application/json" },
-      }
-    ).then((res) => {
-      if (res.ok) {
-        this.setState({ isValidlocation: true });
-        return res.json().then((data) => {
-          if (data.cod === "404") {
-            this.setState({ isValidlocation: false });
-          } else {
-            this.setState({ weatherData: data });
-            return fetch(
-              `http://localhost:3000/forcast?lat=${data.coord.lat}&lon=${data.coord.lon}`,
-              {
-                method: "get",
-                header: { "Content-Type": "application/json" },
-              }
-            )
-              .then((res) => res.json())
-              .then((data) => {
-                this.setState({ forcast: data.daily });
-              });
-          }
-        });
-      } else {
-        this.setState({ isValidlocation: false });
-      }
-    });
-  };
-
   render() {
+    console.log(this.props);
     const {
       locationEntry,
-      weatherData,
+      onInputChange,
       isCelsius,
+      onToggleClick,
+      weatherData,
       forcast,
       isValidlocation,
-    } = this.state;
+    } = this.props;
     return (
       <div className="background">
-        {Object.keys(this.state.weatherData).length === 0 &&
-        this.state.isValidlocation ? (
+        {Object.keys(weatherData).length === 0 && isValidlocation ? (
           <div className="empty-state">
             <h1>Enter a location to see the weather forcast</h1>
             <SearchField
-              onInputChange={this.onInputChange}
+              onInputChange={onInputChange}
               onLocationSubmit={this.onLocationSubmit}
               onEnter={this.onEnter}
               locationEntry={locationEntry}
@@ -93,13 +67,13 @@ class App extends Component {
             <div className="nav-bar">
               <div className="search-bar">
                 <SearchField
-                  onInputChange={this.onInputChange}
+                  onInputChange={onInputChange}
                   onLocationSubmit={this.onLocationSubmit}
                   onEnter={this.onEnter}
                   locationEntry={locationEntry}
                 />
               </div>
-              <UnitToggle onToggleClick={this.onToggleClick} />
+              <UnitToggle onToggleClick={onToggleClick} />
             </div>
             {isValidlocation ? (
               <div className="weather-container">
@@ -121,4 +95,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
