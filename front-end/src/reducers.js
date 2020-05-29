@@ -18,7 +18,7 @@ const initialStateSearch = {
 export const searchInput = (state = initialStateSearch, action = {}) => {
   switch (action.type) {
     case CHANGE_SEARCH_FIELD:
-      return Object.assign({}, state, { locationEntry: action.payload });
+      return Object.assign({}, state, { locationEntry: action.payload.trim() });
     default:
       return state;
   }

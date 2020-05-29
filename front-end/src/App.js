@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   onEnter = (e) => {
-    if (e.which === 13) {
+    if (e.which === 13 && this.props.locationEntry !== "") {
       this.onLocationSubmit();
     }
   };
