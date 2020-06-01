@@ -22,10 +22,13 @@ export const setIsCelsius = () => ({
 
 export const submitLocation = (locationEntry) => (dispatch) => {
   dispatch({ type: REQUEST_WEATHER_PENDING });
-  fetch(`http://localhost:3000/weather?locationEntry=${locationEntry}`, {
-    method: "get",
-    header: { "Content-Type": "application/json" },
-  })
+  fetch(
+    `https://sleepy-caverns-12468.herokuapp.com/weather?locationEntry=${locationEntry}`,
+    {
+      method: "get",
+      header: { "Content-Type": "application/json" },
+    }
+  )
     .then((res) => {
       if (res.ok) {
         dispatch({ type: LOCATION_IS_VALID });
@@ -36,7 +39,7 @@ export const submitLocation = (locationEntry) => (dispatch) => {
             dispatch({ type: REQUEST_WEATHER_SUCCESS, payload: data });
             dispatch({ type: REQUEST_FORCAST_PENDING });
             return fetch(
-              `http://localhost:3000/forcast?lat=${data.coord.lat}&lon=${data.coord.lon}`,
+              `https://sleepy-caverns-12468.herokuapp.com/forcast?lat=${data.coord.lat}&lon=${data.coord.lon}`,
               {
                 method: "get",
                 header: { "Content-Type": "application/json" },
