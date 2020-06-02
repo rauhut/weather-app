@@ -11,6 +11,7 @@ const Forcast = ({ forcastData, isCelsius }) => {
         {forcastData.map((day) => {
           let date = new Date(day.dt * 1000);
           let weekday = Intl.DateTimeFormat("en-US", dateOptions).format(date);
+          let icon = weatherIcon(day.weather[0].main);
           return (
             <div className="forcast-card">
               <h1>{weekday}</h1>
@@ -18,9 +19,7 @@ const Forcast = ({ forcastData, isCelsius }) => {
                 <h3>{day.weather[0].main}</h3>
               </div>
               <img
-                src={require(`../../weather-icons/${weatherIcon(
-                  day.weather[0].main
-                )}.svg`)}
+                src={require(`../../weather-icons/${icon}.svg`)}
                 alt={`Image for ${day.weather[0].main}`}
               ></img>
               <div className="forcast-temp">

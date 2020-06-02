@@ -1,9 +1,10 @@
 import React from "react";
-import { tempConverter, weatherIcon } from "../../util";
+import { tempConverter, weatherIcon } from "../../util.js";
 import "./CurrentWeather.css";
 
 const CurrentWeather = ({ weatherData, isCelsius }) => {
   const weatherType = weatherData.weather[0].main;
+  const icon = weatherIcon(weatherType);
   return (
     <div>
       <center>
@@ -15,9 +16,7 @@ const CurrentWeather = ({ weatherData, isCelsius }) => {
             <div className="weather-type">
               <h3>{weatherType}</h3>
               <img
-                src={require(`../../weather-icons/${weatherIcon(
-                  weatherType
-                )}.svg`)}
+                src={require(`../../weather-icons/${icon}.svg`)}
                 alt={`Image for ${weatherType}`}
               ></img>
               <h4>{weatherData.weather[0].description}</h4>
