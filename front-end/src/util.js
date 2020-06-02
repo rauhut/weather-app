@@ -18,5 +18,3 @@ export const weatherIcon = (weatherType) => {
   const icon = uniqueIcons.includes(weatherType) ? weatherType : "Atmosphere";
   return icon;
 };
-
-export default { tempConverter, weatherIcon };
