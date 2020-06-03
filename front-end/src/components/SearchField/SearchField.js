@@ -10,6 +10,7 @@ const SearchField = ({
   return (
     <div className="search-field" onKeyPress={onEnter}>
       <input
+        aria-label="Search Location"
         type="text"
         placeholder="Search for location"
         onChange={onInputChange}
