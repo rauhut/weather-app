@@ -2,15 +2,20 @@ import React from "react";
 import { tempConverter, weatherIcon } from "../../util.js";
 import "./CurrentWeather.css";
 
-const CurrentWeather = ({ weatherData, isCelsius }) => {
+const CurrentWeather = ({ weatherData, isCelsius, forcastData }) => {
   const weatherType = weatherData.weather[0].main;
   const icon = weatherIcon(weatherType);
+  const timeZoneOffset = forcastData.timezone_offset;
+  const shortenedHourlyForcast = forcastData.hourly
+    .slice(0, 24)
+    .filter((x, i) => i % 2);
   return (
     <div>
       <center>
         <h1>
           Weather for {weatherData.name}, {weatherData.sys.country}
         </h1>
+
         <div className="card">
           <div className="weather-main">
             <div className="weather-type">
@@ -35,6 +40,34 @@ const CurrentWeather = ({ weatherData, isCelsius }) => {
             <h6>Max: {tempConverter(isCelsius, weatherData.main.temp_max)}°</h6>
             <h6>Min: {tempConverter(isCelsius, weatherData.main.temp_min)}°</h6>
           </div>
+        </div>
+        <div className="hourly-forcast">
+          <details>
+            <summary>View Hourly Forcast</summary>
+            {shortenedHourlyForcast.map((hour) => {
+              let date = new Date((hour.dt + timeZoneOffset + 14400) * 1000);
+              let hourNum = date.getHours() % 12 || 12;
+              let hourlyIcon = weatherIcon(hour.weather[0].main);
+              return (
+                <div className="hourly-forcast-row">
+                  <div className="hourly-time">
+                    <h6>
+                      {hourNum}:00 {date.getHours() >= 12 ? "PM" : "AM"}
+                    </h6>
+                  </div>
+                  <div className="hourly-weather-icon">
+                    <img
+                      src={require(`../../weather-icons/${hourlyIcon}.svg`)}
+                      alt={`${hour.weather[0].main}`}
+                    ></img>
+                  </div>
+                  <div className="hourly-temp">
+                    <h6>{tempConverter(isCelsius, hour.temp)}°</h6>
+                  </div>
+                </div>
+              );
+            })}
+          </details>
         </div>
       </center>
     </div>

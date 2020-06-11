@@ -79,8 +79,9 @@ class App extends Component {
                 <CurrentWeather
                   weatherData={weatherData}
                   isCelsius={isCelsius}
+                  forcastData={forcast}
                 />
-                <Forcast forcastData={forcast} isCelsius={isCelsius} />
+                <Forcast forcastData={forcast.daily} isCelsius={isCelsius} />
               </div>
             ) : (
               <div className="empty-state">

@@ -49,7 +49,7 @@ export const submitLocation = (locationEntry) => (dispatch) => {
               .then((data) => {
                 dispatch({
                   type: REQUEST_FORCAST_SUCCESS,
-                  payload: data.daily,
+                  payload: data,
                 });
               })
               .catch((error) =>

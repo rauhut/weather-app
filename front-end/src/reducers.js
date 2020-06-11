@@ -40,7 +40,7 @@ export const toggleTempUnit = (state = initialStateTempUnit, action = {}) => {
 const initialStateWeatherData = {
   isValidLocation: true,
   weatherData: {},
-  forcast: [],
+  forcast: { hourly: [], daily: [] },
   isPending: false,
   error: "",
 };

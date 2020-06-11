@@ -14,6 +14,7 @@ button {
   text-transform: uppercase;
   border: 0.1em solid #4f8ba1;
   background-color: #31b7e8;
+  cursor: pointer;
 }
 
 button:hover {

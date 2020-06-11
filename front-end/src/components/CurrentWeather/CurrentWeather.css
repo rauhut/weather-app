@@ -25,3 +25,60 @@ img {
 .current-temp > h2 {
   padding: 15px;
 }
+
+summary {
+  color: white;
+  font-weight: lighter;
+  font-size: 1.2em;
+  text-shadow: 3px 3px 10px black;
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #415861;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #5d8796;
+}
+
+summary:hover {
+  background-color: #415861;
+}
+
+summary:focus {
+  outline: none;
+}
+
+.hourly-forcast {
+  background-color: #4f8ba1;
+  padding-bottom: 10px;
+}
+
+.hourly-forcast-row {
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  border-width: 1px;
+  border-top-style: solid;
+  border-color: #335561;
+  align-items: center;
+}
+
+.hourly-forcast-row:hover {
+  background-color: #5d8796;
+  transform: scale(1.1);
+}
+
+.hourly-time {
+  flex-grow: 3;
+}
+
+.hourly-weather-icon {
+  flex-grow: 1;
+}
+
+.hourly-temp {
+  flex-grow: 1;
+}
+
+.hourly-weather-icon > img {
+  height: 30px;
+}

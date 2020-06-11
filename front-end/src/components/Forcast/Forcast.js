@@ -20,7 +20,7 @@ const Forcast = ({ forcastData, isCelsius }) => {
               </div>
               <img
                 src={require(`../../weather-icons/${icon}.svg`)}
-                alt={`Image for ${day.weather[0].main}`}
+                alt={`${day.weather[0].main}`}
               ></img>
               <div className="forcast-temp">
                 <h2>{tempConverter(isCelsius, day.temp.day)}°</h2>
