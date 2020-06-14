@@ -9,16 +9,23 @@ import { searchInput, toggleTempUnit, getWeatherData } from "./reducers";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 
-const logger = createLogger();
-
 const rootReducer = combineReducers({
   searchInput,
   toggleTempUnit,
   getWeatherData,
 });
+
+const middlewares = [];
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV !== `production`) {
+  const { logger } = require(`redux-logger`);
+
+  middlewares.push(logger);
+}
+
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunkMiddleware, logger)
+  applyMiddleware(...middlewares, thunkMiddleware)
 );
 
 ReactDOM.render(
