@@ -20,7 +20,7 @@ const getWeather = (req, res) => {
 const getForcast = (req, res) => {
   const { lat, lon } = req.query;
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${apiKey}`
   )
     .then((res) => res.json())
     .then((data) => {
