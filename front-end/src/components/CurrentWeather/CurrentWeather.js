@@ -22,7 +22,7 @@ const CurrentWeather = ({ weatherData, isCelsius, forcastData }) => {
               <h3>{weatherType}</h3>
               <img
                 src={require(`../../weather-icons/${icon}.svg`)}
-                alt={`Image for ${weatherType}`}
+                alt={`${weatherType}`}
               ></img>
               <h4>{weatherData.weather[0].description}</h4>
             </div>
@@ -49,7 +49,7 @@ const CurrentWeather = ({ weatherData, isCelsius, forcastData }) => {
               let hourNum = date.getHours() % 12 || 12;
               let hourlyIcon = weatherIcon(hour.weather[0].main);
               return (
-                <div className="hourly-forcast-row">
+                <div key={hour.dt.toString()} className="hourly-forcast-row">
                   <div className="hourly-time">
                     <h6>
                       {hourNum}:00 {date.getHours() >= 12 ? "PM" : "AM"}

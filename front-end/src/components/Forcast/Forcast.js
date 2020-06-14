@@ -13,7 +13,7 @@ const Forcast = ({ forcastData, isCelsius }) => {
           let weekday = Intl.DateTimeFormat("en-US", dateOptions).format(date);
           let icon = weatherIcon(day.weather[0].main);
           return (
-            <div className="forcast-card">
+            <div key={date} className="forcast-card">
               <h1>{weekday}</h1>
               <div className="forcast-main">
                 <h3>{day.weather[0].main}</h3>
