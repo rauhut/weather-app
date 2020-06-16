@@ -6,7 +6,6 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { combineReducers, applyMiddleware, createStore } from "redux";
 import { searchInput, toggleTempUnit, getWeatherData } from "./reducers";
-import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 
 const rootReducer = combineReducers({
