@@ -33,19 +33,13 @@
 .toggle-switch-inner {
   display: block;
   width: 200%;
-  /* margin-left: -100%; */
-  /* transition: margin 0.3s ease-in 0s; */
 }
 .toggle-switch-inner::before,
 .toggle-switch-inner::after {
   display: block;
   float: left;
   width: 50%;
-  /* height: 34px; */
   padding: 0;
-  /* line-height: 34px; */
-  font-size: 14px;
-  /* color: white; */
   font-weight: bold;
   box-sizing: border-box;
 }
@@ -55,14 +49,6 @@
   background-color: #ccc;
   color: #ccc;
 }
-/* .toggle-switch-disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-.toggle-switch-disabled::before {
-  background-color: #ccc;
-  cursor: not-allowed;
-} */
 .toggle-switch-inner::after {
   content: "F";
   padding-right: 10px;
